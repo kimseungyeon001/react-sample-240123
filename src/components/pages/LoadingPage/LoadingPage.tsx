@@ -1,7 +1,12 @@
 import { DefaultLayout } from '../../common/DefaultLayout'
+import { Spinner } from '../../common/Spinner'
 
 export function LoadingPagePresenter() {
-  return <DefaultLayout>TEST</DefaultLayout>
+  return (
+    <DefaultLayout>
+      <Spinner />
+    </DefaultLayout>
+  )
 }
 
 export function LoadingPage() {

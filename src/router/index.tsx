@@ -1,15 +1,14 @@
 import { createBrowserRouter } from 'react-router-dom'
 import { MainPage } from '../components/pages/MainPage'
+import { fetchMain } from './loader'
 
-export const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <MainPage />,
-    loader: () => {
-      return {
-        data: 'TEST???',
-      }
+export function buildRouter() {
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <MainPage />,
+      loader: fetchMain,
     },
-    errorElement: <div>Error</div>,
-  },
-])
+  ])
+  return router
+}

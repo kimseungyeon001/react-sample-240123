@@ -1,11 +1,9 @@
-export const initMocks = (): void => {
+export const initMocks = async (): Promise<void> => {
   if (typeof window === 'undefined') {
-    import('./server').then((module) => {
-      module.server.listen({ onUnhandledRequest: 'bypass' })
-    })
+    const { server } = await import('./server')
+    server.listen({ onUnhandledRequest: 'bypass' })
   } else {
-    import('./browser').then((module) => {
-      module.worker.start({ onUnhandledRequest: 'bypass' })
-    })
+    const { worker } = await import('./browser')
+    await worker.start({ onUnhandledRequest: 'bypass' })
   }
 }

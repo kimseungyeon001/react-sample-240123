@@ -1,6 +1,6 @@
 import { Config } from './config-type'
 
 export const config: Config = {
-  baseUrl: 'https://localhost:5714/',
+  baseUrl: 'http://localhost:5713',
   useMockApi: true,
 }
