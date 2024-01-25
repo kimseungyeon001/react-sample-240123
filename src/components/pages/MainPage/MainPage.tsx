@@ -3,19 +3,25 @@ import { Await, useLoaderData } from 'react-router-dom'
 import { DefaultLayout } from '../../common/DefaultLayout'
 import { LoadingPage } from '../LoadingPage'
 import { ErrorPage } from '../ErrorPage'
+import { Main } from '../../../model'
+import { MainSearchBar } from './MainSearchBar'
 
 interface MainPagePresenterProps {
-  data: {
-    title: string
-  }
+  data: Main
 }
 
 export function MainPagePresenter({ data }: MainPagePresenterProps) {
-  return <DefaultLayout>{JSON.stringify(data)}</DefaultLayout>
+  console.log(data)
+  return (
+    <DefaultLayout>
+      <MainSearchBar />
+      <div>{data.title}</div>
+    </DefaultLayout>
+  )
 }
 
 export function MainPage() {
-  const { response } = useLoaderData() as { response: Promise<any> }
+  const { response } = useLoaderData() as { response: Promise<Main> }
 
   return (
     <Suspense fallback={<LoadingPage />}>

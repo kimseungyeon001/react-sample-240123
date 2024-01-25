@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import { config } from './config.ts'
 import { initMocks } from './mocks'
+import './index.css'
 
 async function main() {
   if (config.useMockApi) {

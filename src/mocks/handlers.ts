@@ -3,19 +3,28 @@ import { config } from '../config'
 
 const baseUrl = config.baseUrl
 
-function buildFetchMain() {
+export function buildFetchMain() {
   return http.get(`${baseUrl}/main`, async () => {
-    await delay(3000)
-    return HttpResponse.json({
-      title: 'hello world!',
-    })
+    return HttpResponse.json({ title: 'hello world!' }, { status: 200 })
   })
 }
 
-function buildUpdateMain() {
+export function buildFetchMainLoading() {
+  return http.get(`${baseUrl}/main`, async () => {
+    await delay(3000)
+  })
+}
+
+export function buildFetchMainError() {
+  return http.get(`${baseUrl}/main`, async () => {
+    return HttpResponse.error()
+  })
+}
+
+export function buildUpdateMain() {
   return http.post(`${baseUrl}/main`, () => {
     console.log('updated main')
   })
 }
 
-export const handlers = [buildFetchMain(), buildUpdateMain()]
+export const handlers = [buildFetchMainError(), buildUpdateMain()]
