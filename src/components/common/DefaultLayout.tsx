@@ -6,7 +6,7 @@ export function DefaultLayout({ children }: PropsWithChildren) {
       {/* header */}
       {/* <div></div> */}
       {/* main */}
-      <div>{children}</div>
+      <div className="flex justify-center items-center">{children}</div>
       {/* footer */}
       {/* <div></div> */}
     </div>

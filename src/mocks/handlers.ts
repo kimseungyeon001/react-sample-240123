@@ -5,18 +5,20 @@ const baseUrl = config.baseUrl
 
 export function buildFetchMain() {
   return http.get(`${baseUrl}/main`, async () => {
-    return HttpResponse.json({ title: 'hello world!' }, { status: 200 })
+    await delay(3000)
+    return HttpResponse.json({ title: 'hello world!' })
   })
 }
 
 export function buildFetchMainLoading() {
   return http.get(`${baseUrl}/main`, async () => {
-    await delay(3000)
+    await delay('infinite')
   })
 }
 
 export function buildFetchMainError() {
   return http.get(`${baseUrl}/main`, async () => {
+    await delay(3000)
     return HttpResponse.error()
   })
 }
@@ -27,4 +29,4 @@ export function buildUpdateMain() {
   })
 }
 
-export const handlers = [buildFetchMainError(), buildUpdateMain()]
+export const handlers = [buildFetchMain(), buildUpdateMain()]

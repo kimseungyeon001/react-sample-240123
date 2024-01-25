@@ -4,17 +4,14 @@ import { DefaultLayout } from '../../common/DefaultLayout'
 import { LoadingPage } from '../LoadingPage'
 import { ErrorPage } from '../ErrorPage'
 import { Main } from '../../../model'
-import { MainSearchBar } from './MainSearchBar'
 
 interface MainPagePresenterProps {
   data: Main
 }
 
 export function MainPagePresenter({ data }: MainPagePresenterProps) {
-  console.log(data)
   return (
     <DefaultLayout>
-      <MainSearchBar />
       <div>{data.title}</div>
     </DefaultLayout>
   )
