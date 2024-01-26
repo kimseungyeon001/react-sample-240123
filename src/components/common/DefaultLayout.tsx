@@ -4,9 +4,9 @@ export function DefaultLayout({ children }: PropsWithChildren) {
   return (
     <div>
       {/* header */}
-      {/* <div></div> */}
+      <div className="border-b-2 p-2">DEMO APP</div>
       {/* main */}
-      <div className="flex justify-center items-center">{children}</div>
+      <div>{children}</div>
       {/* footer */}
       {/* <div></div> */}
     </div>

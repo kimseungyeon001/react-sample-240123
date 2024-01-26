@@ -1,3 +1,5 @@
-export interface Main {
+export interface ToDoItem {
+  id: string
   title: string
+  description: string
 }
