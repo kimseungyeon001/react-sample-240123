@@ -22,12 +22,3 @@ export function fetchTodoItem({ params }: { params: Params<'id'> }) {
     response: responsePromise,
   })
 }
-
-// NOTE: 追加
-export function addTodoItem() {}
-
-// NOTE: 削除
-export function deleteTodoItem() {}
-
-// NOTE: 更新
-export function updateTodoItem() {}

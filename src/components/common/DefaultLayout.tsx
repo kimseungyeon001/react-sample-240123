@@ -2,13 +2,17 @@ import { PropsWithChildren } from 'react'
 
 export function DefaultLayout({ children }: PropsWithChildren) {
   return (
-    <div>
+    <div className="flex flex-col h-screen w-screen">
       {/* header */}
-      <div className="border-b-2 p-2">DEMO APP</div>
+      <div className="border-b-2 border-black p-2 font-bold">
+        demo app header
+      </div>
       {/* main */}
-      <div>{children}</div>
+      <div className="h-full w-full">{children}</div>
       {/* footer */}
-      {/* <div></div> */}
+      <div className="border-t-2 border-black flex justify-end p-2 font-bold">
+        demo app footer
+      </div>
     </div>
   )
 }

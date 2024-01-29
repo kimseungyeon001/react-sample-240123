@@ -4,7 +4,9 @@ import { Spinner } from '../../common/Spinner'
 export function LoadingPagePresenter() {
   return (
     <DefaultLayout>
-      <Spinner size="large" />
+      <div className="flex justify-center items-center h-full">
+        <Spinner size="large" />
+      </div>
     </DefaultLayout>
   )
 }

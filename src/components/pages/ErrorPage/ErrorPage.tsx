@@ -6,7 +6,11 @@ interface ErrorPagePresenterProps {
 }
 
 export function ErrorPagePresenter({ message }: ErrorPagePresenterProps) {
-  return <DefaultLayout>{message}</DefaultLayout>
+  return (
+    <DefaultLayout>
+      <div className="flex justify-center items-center h-full">{message}</div>
+    </DefaultLayout>
+  )
 }
 
 export function ErrorPage() {
