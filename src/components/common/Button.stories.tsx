@@ -11,5 +11,8 @@ type Story = StoryObj<typeof Button>
 
 export const Default: Story = {
   render: (args) => <Button label={args.label} onClick={args.onClick} />,
-  args: { label: 'button label', onClick: () => {} },
+  args: {
+    label: 'button label',
+    onClick: () => {},
+  },
 }

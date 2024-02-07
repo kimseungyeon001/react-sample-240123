@@ -1,5 +1,5 @@
-import { ToDoItem } from '../../../model'
-import { Button } from '../../common/Button'
+import { ToDoItem } from '@/model'
+import { Button } from '@/components/common/Button'
 
 interface ToDoListProps {
   toDoItems: ToDoItem[]

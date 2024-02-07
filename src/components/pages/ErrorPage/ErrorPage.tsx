@@ -1,5 +1,5 @@
 import { useAsyncError } from 'react-router-dom'
-import { DefaultLayout } from '../../common/DefaultLayout'
+import { DefaultLayout } from '@/components/common/DefaultLayout'
 
 interface ErrorPagePresenterProps {
   message: string

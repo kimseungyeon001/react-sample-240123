@@ -1,5 +1,5 @@
 import { defer, Params } from 'react-router-dom'
-import { config } from '../config'
+import { config } from '@/config'
 
 const baseUrl = config.baseUrl
 

@@ -1,9 +1,9 @@
 import { Suspense, useCallback } from 'react'
-import { Await, useFetcher, useLoaderData, useNavigate } from 'react-router-dom'
-import { DefaultLayout } from '../../common/DefaultLayout'
-import { LoadingPage } from '../LoadingPage'
-import { ErrorPage } from '../ErrorPage'
-import { ToDoItem } from '../../../model'
+import { Await, useLoaderData, useNavigate } from 'react-router-dom'
+import { DefaultLayout } from '@/components/common/DefaultLayout'
+import { LoadingPage } from '@/components/pages/LoadingPage'
+import { ErrorPage } from '@/components/pages/ErrorPage'
+import { ToDoItem } from '@/model'
 import { ToDoList } from './ToDoList'
 
 interface ToDoItemsPagePresenterProps {

@@ -1,4 +1,4 @@
-import { ToDoItem } from '../model'
+import { ToDoItem } from '@/model'
 
 export const toDoItems: ToDoItem[] = [
   {

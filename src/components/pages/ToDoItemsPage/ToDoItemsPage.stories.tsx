@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
 import { ToDoItemsPagePresenter } from './ToDoItemsPage'
-import { toDoItems } from '../../../mocks/mockData'
+import { toDoItems } from '@/mocks/mockData'
 
 const meta: Meta<typeof ToDoItemsPagePresenter> = {
   component: ToDoItemsPagePresenter,

@@ -1,5 +1,10 @@
 {
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
-  }
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "cSpell.words": ["tailwindcss"]
 }

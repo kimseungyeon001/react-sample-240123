@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { ToDoItemsPage } from '../components/pages/ToDoItemsPage'
-import { ToDoItemPage } from '../components/pages/ToDoItemPage'
+import { ToDoItemsPage } from '@/components/pages/ToDoItemsPage'
+import { ToDoItemPage } from '@/components/pages/ToDoItemPage'
 import { fetchTodoList, fetchTodoItem } from './loader'
 import { deleteToDoItem } from './action'
 

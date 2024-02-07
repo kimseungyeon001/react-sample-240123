@@ -7,12 +7,12 @@ import {
   useSubmit,
   useNavigation,
 } from 'react-router-dom'
-import { DefaultLayout } from '../../common/DefaultLayout'
-import { LoadingPage } from '../LoadingPage'
-import { ErrorPage } from '../ErrorPage'
-import { ToDoItem } from '../../../model'
+import { DefaultLayout } from '@/components/common/DefaultLayout'
+import { LoadingPage } from '@/components/pages/LoadingPage'
+import { ErrorPage } from '@/components/pages/ErrorPage'
+import { ToDoItem } from '@/model'
 import { ToDoDetail } from './ToDoDetail'
-import { Button } from '../../common/Button'
+import { Button } from '@/components/common/Button'
 
 interface ToDoItemPagePresenterProps {
   toDoItem: ToDoItem

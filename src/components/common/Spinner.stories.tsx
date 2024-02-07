@@ -9,12 +9,7 @@ export default meta
 
 type Story = StoryObj<typeof Spinner>
 
-export const Large: Story = {
-  render: (args) => <Spinner size={args.size} />,
+export const Default: Story = {
+  render: (_args) => <Spinner />,
   args: { size: 'large' },
-}
-
-export const Small: Story = {
-  render: (args) => <Spinner size={args.size} />,
-  args: { size: 'small' },
 }

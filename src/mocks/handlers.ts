@@ -1,6 +1,6 @@
 import { http, HttpResponse, delay } from 'msw'
 import { toDoItems } from './mockData'
-import { config } from '../config'
+import { config } from '@/config'
 
 const baseUrl = config.baseUrl
 
