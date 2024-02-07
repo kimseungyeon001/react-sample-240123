@@ -5,20 +5,20 @@ const baseUrl = config.baseUrl
 
 // NOTE: 一覧
 export function fetchTodoList() {
-  const responsePromise = fetch(`${baseUrl}/items`, { method: 'GET' }).then(
-    (res) => res.json(),
+  const response = fetch(`${baseUrl}/items`, { method: 'GET' }).then((res) =>
+    res.json(),
   )
   return defer({
-    response: responsePromise,
+    response: response,
   })
 }
 
 // NOTE: 詳細
 export function fetchTodoItem({ params }: { params: Params<'id'> }) {
-  const responsePromise = fetch(`${baseUrl}/items/${params.id}`, {
+  const response = fetch(`${baseUrl}/items/${params.id}`, {
     method: 'GET',
   }).then((res) => res.json())
   return defer({
-    response: responsePromise,
+    response: response,
   })
 }

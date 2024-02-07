@@ -16,10 +16,10 @@ export function buildRouter() {
       element: <ToDoItemPage />,
       loader: fetchTodoItem,
       action: async ({ params, request }) => {
-        // TODO: 追加Action
         switch (request.method) {
           case 'DELETE':
-            return deleteToDoItem(params.id!)
+            const result = await deleteToDoItem(params.id!)
+            return result
         }
       },
     },

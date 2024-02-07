@@ -11,5 +11,7 @@ type Story = StoryObj<typeof ErrorPagePresenter>
 
 export const Default: Story = {
   render: (args) => <ErrorPagePresenter message={args.message} />,
-  args: { message: 'エラーメッセージ' },
+  args: {
+    message: 'エラーメッセージ',
+  },
 }
