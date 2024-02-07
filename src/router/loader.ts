@@ -1,24 +1,31 @@
-import { defer, Params } from 'react-router-dom'
 import { config } from '@/config'
 
 const baseUrl = config.baseUrl
 
 // NOTE: 一覧
-export function fetchTodoList() {
-  const response = fetch(`${baseUrl}/items`, { method: 'GET' }).then((res) =>
-    res.json(),
-  )
-  return defer({
-    response: response,
-  })
+export async function fetchTodoItems() {
+  const response = await fetch(`${baseUrl}/items`, { method: 'GET' })
+  switch (response.status) {
+    case 200:
+      return response.json()
+    case 404:
+      throw new Error('404エラー')
+    default:
+      throw new Error('エラー')
+  }
 }
 
 // NOTE: 詳細
-export function fetchTodoItem({ params }: { params: Params<'id'> }) {
-  const response = fetch(`${baseUrl}/items/${params.id}`, {
+export async function fetchTodoItem(id: string) {
+  const response = await fetch(`${baseUrl}/items/${id}`, {
     method: 'GET',
-  }).then((res) => res.json())
-  return defer({
-    response: response,
   })
+  switch (response.status) {
+    case 200:
+      return response.json()
+    case 404:
+      throw new Error('404エラー')
+    default:
+      throw new Error('エラー')
+  }
 }
