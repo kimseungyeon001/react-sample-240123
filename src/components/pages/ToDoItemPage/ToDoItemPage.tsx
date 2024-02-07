@@ -49,7 +49,7 @@ export function ToDoItemPagePresenter({
 export function ToDoItemPage() {
   const navigate = useNavigate()
   const submit = useSubmit()
-  const actionData = useActionData() as { message: string } | ToDoItem
+  const actionData = useActionData() as { errorMessage: string } | ToDoItem
   const navigation = useNavigation()
   const { response } = useLoaderData() as { response: Promise<ToDoItem> }
 
@@ -63,8 +63,8 @@ export function ToDoItemPage() {
   }, [navigation])
 
   const deleteActionErrorMessage = useMemo(() => {
-    if (actionData !== undefined && 'message' in actionData)
-      return actionData.message
+    if (actionData !== undefined && 'errorMessage' in actionData)
+      return actionData.errorMessage
     return undefined
   }, [actionData])
 

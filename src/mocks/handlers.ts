@@ -47,7 +47,7 @@ export function buildDeleteToDoItem() {
 export function buildDeleteToDoItemError() {
   return http.delete(`${baseUrl}/items/:id`, async () => {
     await delay(1000)
-    return HttpResponse.json({ message: 'forbidden' }, { status: 403 })
+    return HttpResponse.json({ errorMessage: 'forbidden' }, { status: 403 })
   })
 }
 
