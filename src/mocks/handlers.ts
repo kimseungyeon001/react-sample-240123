@@ -16,6 +16,7 @@ export function buildFetchToDoItemsError() {
   return http.get(`${baseUrl}/items`, async () => {
     await delay(1000)
     return HttpResponse.json('not found', { status: 404 })
+    // return HttpResponse.error()
   })
 }
 
@@ -32,6 +33,7 @@ export function buildFetchToDoItemError() {
   return http.get(`${baseUrl}/items/:id`, async () => {
     await delay(1000)
     return HttpResponse.json('not found', { status: 404 })
+    // return HttpResponse.error()
   })
 }
 
