@@ -2,7 +2,7 @@ import { createBrowserRouter, defer } from 'react-router-dom'
 import { ToDoItemsPage } from '@/components/pages/ToDoItemsPage'
 import { ToDoItemPage } from '@/components/pages/ToDoItemPage'
 import { deleteToDoItem } from './action'
-import { fetchTodoItems, fetchTodoItem } from './loader'
+import { fetchToDoItems, fetchToDoItem } from './loader'
 
 export function buildRouter() {
   const router = createBrowserRouter([
@@ -11,7 +11,7 @@ export function buildRouter() {
       element: <ToDoItemsPage />,
       loader: async () => {
         return defer({
-          response: fetchTodoItems(),
+          response: fetchToDoItems(),
         })
       },
     },
@@ -20,7 +20,7 @@ export function buildRouter() {
       element: <ToDoItemPage />,
       loader: async ({ params }) => {
         return defer({
-          response: fetchTodoItem(params.id!),
+          response: fetchToDoItem(params.id!),
         })
       },
       action: async ({ params, request }) => {

@@ -12,14 +12,8 @@ export async function deleteToDoItem(id: string) {
       case 200:
         const data = await response.json()
         return data
-      case 403:
-        return {
-          errorMessage: '403エラー',
-        }
       default:
-        return {
-          errorMessage: 'エラー',
-        }
+        throw Error()
     }
   } catch (error) {
     return {

@@ -3,24 +3,23 @@ import { config } from '@/config'
 const baseUrl = config.baseUrl
 
 // NOTE: 一覧
-export async function fetchTodoItems() {
+export async function fetchToDoItems() {
   try {
     const response = await fetch(`${baseUrl}/items`, { method: 'GET' })
     switch (response.status) {
       case 200:
         return response.json()
-      case 404:
-        throw new Error('404エラー')
       default:
-        throw new Error('エラー')
+        throw Error(`${response.status}エラー`)
     }
   } catch (error: unknown) {
+    console.warn('toDoItems error', error)
     throw error
   }
 }
 
 // NOTE: 詳細
-export async function fetchTodoItem(id: string) {
+export async function fetchToDoItem(id: string) {
   try {
     const response = await fetch(`${baseUrl}/items/${id}`, {
       method: 'GET',
@@ -28,12 +27,11 @@ export async function fetchTodoItem(id: string) {
     switch (response.status) {
       case 200:
         return response.json()
-      case 404:
-        throw new Error('404エラー')
       default:
-        throw new Error('エラー')
+        throw Error(`${response.status}エラー`)
     }
   } catch (error) {
+    console.warn('toDoItem error', error)
     throw error
   }
 }
