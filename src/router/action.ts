@@ -23,7 +23,7 @@ export async function deleteToDoItem(id: string) {
       case 403:
         return { errorMessage: 'forbidden' }
       default:
-        return { errorMessage: 'network error' }
+        return { errorMessage: 'unexpected error' }
     }
   }
 }

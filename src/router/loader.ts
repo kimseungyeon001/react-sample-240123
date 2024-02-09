@@ -21,7 +21,7 @@ export async function fetchToDoItems() {
       case 404:
         throw new Error('not found')
       default:
-        throw new Error('network error')
+        throw new Error('unexpected error')
     }
   }
 }
@@ -46,7 +46,7 @@ export async function fetchToDoItem(id: string) {
       case 404:
         throw new Error('not found')
       default:
-        throw new Error('network error')
+        throw new Error('unexpected error')
     }
   }
 }
