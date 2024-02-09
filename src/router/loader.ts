@@ -6,8 +6,8 @@ const baseUrl = config.baseUrl
 export async function fetchToDoItems() {
   try {
     const response = await fetch(`${baseUrl}/items`, { method: 'GET' })
-    switch (response.status) {
-      case 200:
+    switch (response.ok) {
+      case true:
         return response.json()
       default:
         throw Error(`${response.status}エラー`)
@@ -24,8 +24,8 @@ export async function fetchToDoItem(id: string) {
     const response = await fetch(`${baseUrl}/items/${id}`, {
       method: 'GET',
     })
-    switch (response.status) {
-      case 200:
+    switch (response.ok) {
+      case true:
         return response.json()
       default:
         throw Error(`${response.status}エラー`)
