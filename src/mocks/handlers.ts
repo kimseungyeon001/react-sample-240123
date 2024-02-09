@@ -15,7 +15,11 @@ export function buildFetchToDoItems() {
 export function buildFetchToDoItemsError() {
   return http.get(`${baseUrl}/items`, async () => {
     await delay(1000)
+    // NOTE: client error
     return HttpResponse.json('not found', { status: 404 })
+    // NOTE: server error
+    // return HttpResponse.json('bad gateway', { status: 502 })
+    // NOTE: network error
     // return HttpResponse.error()
   })
 }
@@ -32,7 +36,11 @@ export function buildFetchToDoItem() {
 export function buildFetchToDoItemError() {
   return http.get(`${baseUrl}/items/:id`, async () => {
     await delay(1000)
+    // NOTE: client error
     return HttpResponse.json('not found', { status: 404 })
+    // NOTE: server error
+    // return HttpResponse.json('bad gateway', { status: 502 })
+    // NOTE: network error
     // return HttpResponse.error()
   })
 }
@@ -49,7 +57,11 @@ export function buildDeleteToDoItem() {
 export function buildDeleteToDoItemError() {
   return http.delete(`${baseUrl}/items/:id`, async () => {
     await delay(1000)
+    // NOTE: client error
     return HttpResponse.json('forbidden', { status: 403 })
+    // NOTE: server error
+    // return HttpResponse.json('bad gateway', { status: 502 })
+    // NOTE: network error
     // return HttpResponse.error()
   })
 }

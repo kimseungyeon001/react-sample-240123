@@ -1,4 +1,5 @@
 import { config } from '@/config'
+import { CustomError } from './utils'
 
 const baseUrl = config.baseUrl
 
@@ -10,11 +11,18 @@ export async function fetchToDoItems() {
       case true:
         return response.json()
       default:
-        throw Error(`${response.status}エラー`)
+        const message = response.statusText
+        const statusCode = response.status
+        throw new CustomError(message, statusCode)
     }
   } catch (error: unknown) {
     console.warn('toDoItems error', error)
-    throw error
+    switch ((error as CustomError).statusCode) {
+      case 404:
+        throw new Error('not found')
+      default:
+        throw new Error('network error')
+    }
   }
 }
 
@@ -28,10 +36,17 @@ export async function fetchToDoItem(id: string) {
       case true:
         return response.json()
       default:
-        throw Error(`${response.status}エラー`)
+        const message = response.statusText
+        const statusCode = response.status
+        throw new CustomError(message, statusCode)
     }
   } catch (error) {
     console.warn('toDoItem error', error)
-    throw error
+    switch ((error as CustomError).statusCode) {
+      case 404:
+        throw new Error('not found')
+      default:
+        throw new Error('network error')
+    }
   }
 }

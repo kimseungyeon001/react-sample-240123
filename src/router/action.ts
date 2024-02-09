@@ -1,4 +1,5 @@
 import { config } from '@/config'
+import { CustomError } from './utils'
 
 const baseUrl = config.baseUrl
 
@@ -8,16 +9,21 @@ export async function deleteToDoItem(id: string) {
     const response = await fetch(`${baseUrl}/items/${id}`, {
       method: 'DELETE',
     })
-    switch (response.status) {
-      case 200:
-        const data = await response.json()
-        return data
+    switch (response.ok) {
+      case true:
+        return response.json()
       default:
-        throw Error()
+        const message = response.statusText
+        const statusCode = response.status
+        throw new CustomError(message, statusCode)
     }
   } catch (error) {
-    return {
-      errorMessage: 'エラー',
+    console.warn('toDoItems error', error)
+    switch ((error as CustomError).statusCode) {
+      case 403:
+        return { errorMessage: 'forbidden' }
+      default:
+        return { errorMessage: 'network error' }
     }
   }
 }
