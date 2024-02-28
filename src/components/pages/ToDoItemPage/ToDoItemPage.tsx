@@ -50,13 +50,16 @@ export function ToDoItemPage() {
 
   const handleDeleteToDoItemSubmit = useCallback(
     (id: string) => {
-      fetcher.submit({ id }, { method: 'DELETE', action: `/${id}` })
+      fetcher.submit({}, { method: 'DELETE', action: `/${id}` })
     },
     [fetcher],
   )
 
   const isDeleteActionLoading = useMemo(() => {
-    if (fetcher.formMethod === 'delete' && fetcher.state === 'loading')
+    if (
+      fetcher.formMethod === 'delete' &&
+      (fetcher.state === 'loading' || fetcher.state === 'submitting')
+    )
       return true
     return false
   }, [fetcher.formMethod, fetcher.state])

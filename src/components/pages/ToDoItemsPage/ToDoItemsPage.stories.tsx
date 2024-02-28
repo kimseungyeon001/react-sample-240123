@@ -15,10 +15,12 @@ export const Default: Story = {
     <ToDoItemsPagePresenter
       toDoItems={args.toDoItems}
       onToDoItemClick={args.onToDoItemClick}
+      onToDoItemAddClick={args.onToDoItemAddClick}
     />
   ),
   args: {
     toDoItems,
     onToDoItemClick: () => {},
+    onToDoItemAddClick: () => {},
   },
 }

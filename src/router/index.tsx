@@ -1,7 +1,8 @@
-import { createBrowserRouter, defer } from 'react-router-dom'
+import { createBrowserRouter, defer, redirect } from 'react-router-dom'
 import { ToDoItemsPage } from '@/components/pages/ToDoItemsPage'
 import { ToDoItemPage } from '@/components/pages/ToDoItemPage'
-import { deleteToDoItem } from './action'
+import { ToDoItemAddPage } from '@/components/pages/ToDoItemAddPage'
+import { deleteToDoItem, addToDoItem } from './action'
 import { fetchToDoItems, fetchToDoItem } from './loader'
 
 export function buildRouter() {
@@ -27,6 +28,24 @@ export function buildRouter() {
         switch (request.method) {
           case 'DELETE':
             const result = await deleteToDoItem(params.id!)
+            return result
+        }
+      },
+    },
+    {
+      path: '/item-add',
+      element: <ToDoItemAddPage />,
+      action: async ({ request }) => {
+        switch (request.method) {
+          case 'POST':
+            const formData = await request.formData()
+            const title = formData.get('title') as string
+            const description = formData.get('description') as string
+            const result = await addToDoItem({
+              title: title,
+              description: description,
+            })
+            if (!('errorMessage' in result)) return redirect('/')
             return result
         }
       },

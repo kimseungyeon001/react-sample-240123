@@ -66,8 +66,30 @@ export function buildDeleteToDoItemError() {
   })
 }
 
+// 追加
+export function buildAddToDoItem() {
+  return http.post(`${baseUrl}/item-add`, async ({ request }) => {
+    await delay(1000)
+    const newToDoItem = await request.json()
+    return HttpResponse.json(newToDoItem)
+  })
+}
+
+export function buildAddToDoItemError() {
+  return http.post(`${baseUrl}/item-add`, async () => {
+    await delay(1000)
+    // NOTE: client error
+    return HttpResponse.json('forbidden', { status: 403 })
+    // NOTE: server error
+    // return HttpResponse.json('bad gateway', { status: 502 })
+    // NOTE: network error
+    // return HttpResponse.error()
+  })
+}
+
 export const handlers = [
   buildFetchToDoItems(),
   buildFetchToDoItem(),
   buildDeleteToDoItemError(),
+  buildAddToDoItem(),
 ]

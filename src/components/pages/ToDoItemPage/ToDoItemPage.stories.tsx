@@ -2,17 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import { ToDoItemPagePresenter } from './ToDoItemPage'
 import { toDoItems } from '@/mocks/mockData'
-import { MemoryRouter } from 'react-router-dom'
 
 const meta: Meta<typeof ToDoItemPagePresenter> = {
   component: ToDoItemPagePresenter,
-  decorators: [
-    (Story) => (
-      <MemoryRouter>
-        <Story />
-      </MemoryRouter>
-    ),
-  ],
 }
 export default meta
 

@@ -5,15 +5,18 @@ import { LoadingPage } from '@/components/pages/LoadingPage'
 import { ErrorPage } from '@/components/pages/ErrorPage'
 import { ToDoItem } from '@/model'
 import { ToDoItemsList } from './ToDoItemsList'
+import { Button } from '@/components/common/Button'
 
 interface ToDoItemsPagePresenterProps {
   toDoItems: ToDoItem[]
   onToDoItemClick: (id: string) => void
+  onToDoItemAddClick: () => void
 }
 
 export function ToDoItemsPagePresenter({
   toDoItems,
   onToDoItemClick,
+  onToDoItemAddClick,
 }: ToDoItemsPagePresenterProps) {
   return (
     <DefaultLayout>
@@ -22,6 +25,9 @@ export function ToDoItemsPagePresenter({
           toDoItems={toDoItems}
           onToDoItemClick={onToDoItemClick}
         />
+        <div className="flex justify-end">
+          <Button onClick={onToDoItemAddClick} label="追加" />
+        </div>
       </div>
     </DefaultLayout>
   )
@@ -38,6 +44,10 @@ export function ToDoItemsPage() {
     [navigate],
   )
 
+  const handleToDoItemAddClick = useCallback(() => {
+    navigate({ pathname: `/item-add` })
+  }, [navigate])
+
   return (
     <Suspense fallback={<LoadingPage />}>
       <Await resolve={response} errorElement={<ErrorPage />}>
@@ -45,6 +55,7 @@ export function ToDoItemsPage() {
           <ToDoItemsPagePresenter
             toDoItems={toDoItems}
             onToDoItemClick={handleToDoItemClick}
+            onToDoItemAddClick={handleToDoItemAddClick}
           />
         )}
       </Await>
