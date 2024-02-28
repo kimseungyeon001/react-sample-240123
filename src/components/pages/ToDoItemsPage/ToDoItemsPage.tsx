@@ -4,7 +4,7 @@ import { DefaultLayout } from '@/components/common/DefaultLayout'
 import { LoadingPage } from '@/components/pages/LoadingPage'
 import { ErrorPage } from '@/components/pages/ErrorPage'
 import { ToDoItem } from '@/model'
-import { ToDoList } from './ToDoList'
+import { ToDoItemsList } from './ToDoItemsList'
 
 interface ToDoItemsPagePresenterProps {
   toDoItems: ToDoItem[]
@@ -18,9 +18,10 @@ export function ToDoItemsPagePresenter({
   return (
     <DefaultLayout>
       <div className="flex flex-col h-full justify-between p-2">
-        <div className="flex flex-col gap-4">
-          <ToDoList toDoItems={toDoItems} onToDoItemClick={onToDoItemClick} />
-        </div>
+        <ToDoItemsList
+          toDoItems={toDoItems}
+          onToDoItemClick={onToDoItemClick}
+        />
       </div>
     </DefaultLayout>
   )

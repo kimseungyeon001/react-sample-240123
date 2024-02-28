@@ -1,25 +1,18 @@
 import { Suspense, useCallback, useMemo } from 'react'
-import {
-  Await,
-  useLoaderData,
-  useNavigate,
-  useActionData,
-  useSubmit,
-  useNavigation,
-} from 'react-router-dom'
+import { Await, useLoaderData, useNavigate, useFetcher } from 'react-router-dom'
 import { DefaultLayout } from '@/components/common/DefaultLayout'
 import { LoadingPage } from '@/components/pages/LoadingPage'
 import { ErrorPage } from '@/components/pages/ErrorPage'
 import { ToDoItem } from '@/model'
-import { ToDoDetail } from './ToDoDetail'
+import { ToDoItemDetail } from './ToDoItemDetail'
 import { Button } from '@/components/common/Button'
 
 interface ToDoItemPagePresenterProps {
   toDoItem: ToDoItem
   isDeleteActionLoading: boolean
   deleteActionErrorMessage?: string
+  onDeleteToDoItemSubmit: (id: string) => void
   onBackClick: () => void
-  onDeleteToDoItemClick: (id: string) => void
 }
 
 export function ToDoItemPagePresenter({
@@ -27,16 +20,16 @@ export function ToDoItemPagePresenter({
   isDeleteActionLoading,
   deleteActionErrorMessage,
   onBackClick,
-  onDeleteToDoItemClick,
+  onDeleteToDoItemSubmit,
 }: ToDoItemPagePresenterProps) {
   return (
     <DefaultLayout>
       <div className="flex flex-col h-full justify-between p-2">
-        <ToDoDetail
+        <ToDoItemDetail
           toDoItem={toDoItem}
           isDeleteActionLoading={isDeleteActionLoading}
           deleteActionErrorMessage={deleteActionErrorMessage}
-          onDeleteToDoItemClick={onDeleteToDoItemClick}
+          onDeleteToDoItemSubmit={onDeleteToDoItemSubmit}
         />
         <div className="flex justify-end">
           <Button onClick={onBackClick} label="戻る" />
@@ -48,36 +41,31 @@ export function ToDoItemPagePresenter({
 
 export function ToDoItemPage() {
   const navigate = useNavigate()
-  const submit = useSubmit()
-  const actionData = useActionData() as { errorMessage: string } | ToDoItem
-  const navigation = useNavigation()
   const { response } = useLoaderData() as { response: Promise<ToDoItem> }
-
-  const isDeleteActionLoading = useMemo(() => {
-    if (
-      navigation.formMethod === 'delete' &&
-      (navigation.state === 'loading' || navigation.state === 'submitting')
-    )
-      return true
-    return false
-  }, [navigation])
-
-  const deleteActionErrorMessage = useMemo(() => {
-    if (actionData !== undefined && 'errorMessage' in actionData)
-      return actionData.errorMessage
-    return undefined
-  }, [actionData])
+  const fetcher = useFetcher<ToDoItem | { errorMessage: string }>()
 
   const handleBackClick = useCallback(() => {
     navigate({ pathname: '/' })
   }, [navigate])
 
-  const handleDeleteToDoItemClick = useCallback(
-    async (id: string) => {
-      submit({ id }, { method: 'DELETE', action: `/${id}` })
+  const handleDeleteToDoItemSubmit = useCallback(
+    (id: string) => {
+      fetcher.submit({ id }, { method: 'DELETE', action: `/${id}` })
     },
-    [submit],
+    [fetcher],
   )
+
+  const isDeleteActionLoading = useMemo(() => {
+    if (fetcher.formMethod === 'delete' && fetcher.state === 'loading')
+      return true
+    return false
+  }, [fetcher.formMethod, fetcher.state])
+
+  const deleteActionErrorMessage = useMemo(() => {
+    if (fetcher.data !== undefined && 'errorMessage' in fetcher.data)
+      return fetcher.data.errorMessage
+    return undefined
+  }, [fetcher.data])
 
   return (
     <Suspense fallback={<LoadingPage />}>
@@ -88,7 +76,7 @@ export function ToDoItemPage() {
             isDeleteActionLoading={isDeleteActionLoading}
             deleteActionErrorMessage={deleteActionErrorMessage}
             onBackClick={handleBackClick}
-            onDeleteToDoItemClick={handleDeleteToDoItemClick}
+            onDeleteToDoItemSubmit={handleDeleteToDoItemSubmit}
           />
         )}
       </Await>

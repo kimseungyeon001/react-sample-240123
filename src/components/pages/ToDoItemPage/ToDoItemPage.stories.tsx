@@ -2,9 +2,17 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import { ToDoItemPagePresenter } from './ToDoItemPage'
 import { toDoItems } from '@/mocks/mockData'
+import { MemoryRouter } from 'react-router-dom'
 
 const meta: Meta<typeof ToDoItemPagePresenter> = {
   component: ToDoItemPagePresenter,
+  decorators: [
+    (Story) => (
+      <MemoryRouter>
+        <Story />
+      </MemoryRouter>
+    ),
+  ],
 }
 export default meta
 
@@ -16,15 +24,15 @@ export const Default: Story = {
       toDoItem={args.toDoItem}
       isDeleteActionLoading={args.isDeleteActionLoading}
       deleteActionErrorMessage={args.deleteActionErrorMessage}
+      onDeleteToDoItemSubmit={args.onDeleteToDoItemSubmit}
       onBackClick={args.onBackClick}
-      onDeleteToDoItemClick={args.onDeleteToDoItemClick}
     />
   ),
   args: {
     toDoItem: toDoItems.find((item) => item.id === 'item-1'),
     isDeleteActionLoading: false,
     deleteActionErrorMessage: undefined,
+    onDeleteToDoItemSubmit: () => {},
     onBackClick: () => {},
-    onDeleteToDoItemClick: () => {},
   },
 }

@@ -1,12 +1,15 @@
 import { ToDoItem } from '@/model'
 import { Button } from '@/components/common/Button'
 
-interface ToDoListProps {
+interface ToDoItemsListProps {
   toDoItems: ToDoItem[]
   onToDoItemClick: (id: string) => void
 }
 
-export function ToDoList({ toDoItems, onToDoItemClick }: ToDoListProps) {
+export function ToDoItemsList({
+  toDoItems,
+  onToDoItemClick,
+}: ToDoItemsListProps) {
   return (
     <div className="flex flex-col gap-2">
       {toDoItems.map((toDoItem) => (

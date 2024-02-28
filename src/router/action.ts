@@ -1,5 +1,5 @@
 import { config } from '@/config'
-import { CustomError } from './utils'
+import { CustomError } from '@/utils/errorUtils'
 
 const baseUrl = config.baseUrl
 
