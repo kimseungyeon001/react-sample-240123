@@ -16,6 +16,6 @@ export function ErrorPagePresenter({ message }: ErrorPagePresenterProps) {
 export function ErrorPage() {
   const error = useAsyncError() as Error
 
-  console.warn('error check:', error)
+  console.error('error check:', error)
   return <ErrorPagePresenter message={error.message} />
 }

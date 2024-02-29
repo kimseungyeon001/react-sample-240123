@@ -17,8 +17,8 @@ export async function deleteToDoItem(id: string) {
         const statusCode = response.status
         throw new CustomError(message, statusCode)
     }
-  } catch (error) {
-    console.warn('toDoItems error', error)
+  } catch (error: unknown) {
+    console.error('toDoItems error', error)
     switch ((error as CustomError).statusCode) {
       case 403:
         return { errorMessage: 'forbidden' }
@@ -48,8 +48,8 @@ export async function addToDoItem(params: AddToDoItemParams) {
         const statusCode = response.status
         throw new CustomError(message, statusCode)
     }
-  } catch (error) {
-    console.warn('toDoItems error', error)
+  } catch (error: unknown) {
+    console.error('toDoItems error', error)
     switch ((error as CustomError).statusCode) {
       case 403:
         return { errorMessage: 'forbidden' }

@@ -16,7 +16,7 @@ export async function fetchToDoItems() {
         throw new CustomError(message, statusCode)
     }
   } catch (error: unknown) {
-    console.warn('toDoItems error', error)
+    console.error('toDoItems error', error)
     switch ((error as CustomError).statusCode) {
       case 404:
         throw new Error('not found')
@@ -40,8 +40,8 @@ export async function fetchToDoItem(id: string) {
         const statusCode = response.status
         throw new CustomError(message, statusCode)
     }
-  } catch (error) {
-    console.warn('toDoItem error', error)
+  } catch (error: unknown) {
+    console.error('toDoItem error', error)
     switch ((error as CustomError).statusCode) {
       case 404:
         throw new Error('not found')

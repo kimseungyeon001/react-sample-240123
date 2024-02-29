@@ -35,7 +35,9 @@ export function ToDoItemsPagePresenter({
 
 export function ToDoItemsPage() {
   const navigate = useNavigate()
-  const { response } = useLoaderData() as { response: Promise<ToDoItem[]> }
+  const { response } = useLoaderData() as {
+    response: Promise<ToDoItem[]>
+  }
 
   const handleToDoItemClick = useCallback(
     (id: string) => {
