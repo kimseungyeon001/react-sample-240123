@@ -29,6 +29,9 @@ export function buildRouter() {
           case 'DELETE':
             const result = await deleteToDoItem(params.id!)
             return result
+          default:
+            // TODO: redirect error page
+            redirect('/')
         }
       },
     },
@@ -47,6 +50,9 @@ export function buildRouter() {
             })
             if (!('errorMessage' in result)) return redirect('/')
             return result
+          default:
+            // TODO: redirect error page
+            redirect('/')
         }
       },
     },
