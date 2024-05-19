@@ -4,12 +4,12 @@
 
 create the project
 ```
-git clone https://github.com/kimseungyeon001/react-sample.git
+git clone https://github.com/kimseungyeon001/react-sample-240123.git
 ```
 
 access the project directory
 ```
-cd react-sample
+cd react-sample-240123
 ```
 
 install dependencies
